@@ -3,8 +3,20 @@
 # Dataset: StudentPerformanceFactors.csv
 # Libraries: Pandas and Matplotlib
 
+from pathlib import Path
+
 import pandas as pd
 import matplotlib.pyplot as plt
+
+GRAPH_DIR = Path(__file__).resolve().parent
+
+
+def save_and_show_graph(filename):
+    graph_path = GRAPH_DIR / filename
+    plt.savefig(graph_path, dpi=150, bbox_inches="tight")
+    print(f"Graph saved as {graph_path.relative_to(Path(__file__).resolve().parent)}")
+    plt.show()
+
 
 # --------------------------------------------------
 # 1. Import the CSV dataset
@@ -124,7 +136,7 @@ plt.title("Distribution of Exam Scores")
 plt.xlabel("Exam Score")
 plt.ylabel("Number of Records")
 plt.tight_layout()
-plt.show()
+save_and_show_graph("exam_score_distribution.png")
 
 # --------------------------------------------------
 # 8. Visualisation 2: Study hours and exam score
@@ -135,7 +147,7 @@ plt.title("Study Hours vs Exam Score")
 plt.xlabel("Hours Studied")
 plt.ylabel("Exam Score")
 plt.tight_layout()
-plt.show()
+save_and_show_graph("study_hours_vs_exam_score.png")
 
 # --------------------------------------------------
 # 9. Visualisation 3: Attendance and exam score
@@ -146,7 +158,7 @@ plt.title("Attendance vs Exam Score")
 plt.xlabel("Attendance")
 plt.ylabel("Exam Score")
 plt.tight_layout()
-plt.show()
+save_and_show_graph("attendance_vs_exam_score.png")
 
 # --------------------------------------------------
 # 10. Visualisation 4: Average exam score by motivation
@@ -159,7 +171,7 @@ plt.title("Average Exam Score by Motivation Level")
 plt.xlabel("Motivation Level")
 plt.ylabel("Average Exam Score")
 plt.tight_layout()
-plt.show()
+save_and_show_graph("average_exam_score_by_motivation.png")
 
 # --------------------------------------------------
 # 11. Visualisation 5: Average exam score by school type
@@ -172,7 +184,7 @@ plt.title("Average Exam Score by School Type")
 plt.xlabel("School Type")
 plt.ylabel("Average Exam Score")
 plt.tight_layout()
-plt.show()
+save_and_show_graph("average_exam_score_by_school_type.png")
 
 # --------------------------------------------------
 # 12. Correlation between numerical columns
@@ -193,4 +205,4 @@ plt.title("Correlation of Numerical Factors with Exam Score")
 plt.xlabel("Correlation Coefficient")
 plt.ylabel("Numerical Factor")
 plt.tight_layout()
-plt.show()
+save_and_show_graph("correlation_with_exam_score.png")
